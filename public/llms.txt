@@ -1,0 +1,34 @@
+# BeeCooLabs
+
+> BeeCooLabs is a privacy-first product lab building focused "domain super apps" for everyday
+> life — simple digital tools that bring related daily workflows together in one place, without
+> collecting more personal data than necessary.
+
+## What BeeCooLabs is
+
+- A privacy-first product lab — not an agency and not a generic SaaS company.
+- "Domain super apps" means: instead of one giant app for everything, BeeCooLabs builds
+  smaller, focused tools around a single real-life domain, bringing related tasks together
+  simply and privately.
+
+## Product directions being shaped
+
+- Family life & school rhythm — routines, activities, meals, school moments, household coordination.
+- Group planning & events — decisions, shared tasks, notes, timelines, photos.
+- Small service businesses — coaches, tutors, creators managing clients, bookings and progress.
+- Home & shared decisions — calmer ways for households to plan and decide together.
+- Learning & personal growth — goals, habits, study plans, practice routines.
+- Community & local coordination — clubs, churches, neighbourhoods organising people and activities.
+
+## Principles
+
+- Domain-first: built around real-life areas, not random feature lists.
+- Super apps, but focused: multiple related tools in one simple place.
+- Privacy by default: collect less, explain more, avoid unnecessary accounts where possible.
+- Community-shaped: ideas, feedback and real use influence what gets built.
+- Built small, improved often: launch useful things early, then improve from real needs.
+
+## Links
+
+- Website: https://beecoolabs.com/
+- Contact: hello@beecoolabs.com
