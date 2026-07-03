@@ -29,6 +29,8 @@ npm run preview    # serve the built site locally
    - **Build output directory:** `dist`
 4. Add the custom domain (`beecoolabs.com`) under the project's Custom Domains tab.
 
+**Deploy:** once connected, every push to `main` auto-builds and deploys via Cloudflare Pages.
+
 `public/_headers` ships security headers and long-lived caching for hashed assets.
 
 ## Project layout
