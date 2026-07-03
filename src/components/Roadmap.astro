@@ -1,0 +1,138 @@
+---
+/**
+ * Roadmap shaped by ideas — direction 1c: three quiet columns with
+ * coloured top borders (honey / clay / sage-dashed) and dot bullets,
+ * followed by the share-an-idea panel.
+ */
+import { roadmapGroups } from '../data/roadmap';
+import IdeaForm from './IdeaForm.astro';
+---
+
+<section class="section roadmap" id="roadmap">
+  <div class="container">
+    <div class="roadmap-head" data-reveal>
+      <p class="section-kicker">Direction board</p>
+      <h2>Roadmap shaped by ideas</h2>
+      <p class="section-intro">
+        BeeCooLabs is starting small and shaping the roadmap around real problems, useful
+        feedback and practical product experiments.
+      </p>
+    </div>
+
+    <ol class="roadmap-grid" role="list">
+      {
+        roadmapGroups.map((group, i) => (
+          <li
+            class={`roadmap-group accent-${group.accent}`}
+            data-reveal
+            style={`--reveal-delay:${i * 0.12}s`}
+          >
+            <h3>{group.label}</h3>
+            <ul class="group-items" role="list">
+              {group.items.map((item) => (
+                <li>
+                  <span class="item-dot" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+    </ol>
+
+    <IdeaForm />
+  </div>
+</section>
+
+<style>
+  .roadmap-head {
+    max-width: 45rem;
+  }
+
+  .roadmap-head .section-intro {
+    margin-bottom: 0;
+  }
+
+  .roadmap-grid {
+    list-style: none;
+    margin: 3.5rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .roadmap-group {
+    padding-top: 1.4rem;
+    border-top: 2px solid var(--hairline-deep);
+  }
+
+  .accent-honey {
+    border-top-color: var(--honey-500);
+  }
+
+  .accent-clay {
+    border-top-color: var(--clay-500);
+  }
+
+  .accent-sage {
+    border-top-style: dashed;
+    border-top-color: var(--sage-400);
+  }
+
+  .roadmap-group h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 1.1rem;
+  }
+
+  .group-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .group-items li {
+    display: flex;
+    gap: 0.7rem;
+    align-items: baseline;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--ink-700);
+  }
+
+  .accent-sage .group-items li {
+    color: var(--ink-500);
+  }
+
+  .item-dot {
+    flex: none;
+    width: 0.32rem;
+    height: 0.32rem;
+    border-radius: 50%;
+    transform: translateY(-2px);
+  }
+
+  .accent-honey .item-dot {
+    background: var(--honey-500);
+  }
+
+  .accent-clay .item-dot {
+    background: var(--clay-500);
+  }
+
+  .accent-sage .item-dot {
+    background: var(--sage-400);
+  }
+
+  @media (max-width: 820px) {
+    .roadmap-grid {
+      grid-template-columns: 1fr;
+      gap: 2.25rem;
+    }
+  }
+</style>

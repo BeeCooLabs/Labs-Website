@@ -1,0 +1,338 @@
+/* ==========================================================================
+   BeeCooLabs — global styles & design tokens
+   Design direction 1c: "Premium Privacy-First" — light, quiet, editorial.
+   Cream/sand surfaces, dark olive text, honey/clay/sage accents,
+   hexagon-cell geometry, generous spacing.
+   ========================================================================== */
+
+:root {
+  /* --- colour tokens (from direction 1c board) --- */
+  --cream-50: #faf6ec;
+  --cream-100: #f3ecda;
+  --hairline: #e7dfc9;
+  --hairline-deep: #ddd2b4;
+  --field-border: #e0d7be;
+  --ink-900: #232a1b;
+  --ink-800: #39402c;
+  --ink-700: #454a38;
+  --ink-600: #5a5f4c;
+  --ink-500: #6a6f5c;
+  --ink-400: #8b8f79;
+  --olive-pill: #2c351f;
+  --honey-500: #d9a63f;
+  --honey-600: #b0771f;
+  --honey-300: #e8b95c;
+  --clay-500: #c06b45;
+  --clay-600: #a2542f;
+  --green-500: #5c7040;
+  --sage-400: #9aa07e;
+
+  /* --- semantic tokens --- */
+  --bg-page: var(--cream-50);
+  --bg-band: var(--cream-100);
+  --bg-card: #ffffff;
+  --bg-deep: var(--ink-900);
+  --text-body: var(--ink-600);
+  --text-heading: var(--ink-900);
+  --text-on-deep: var(--cream-50);
+  --text-on-deep-soft: rgba(250, 246, 236, 0.7);
+  --accent: var(--honey-500);
+  --accent-strong: var(--honey-600);
+
+  /* --- type --- */
+  --font-body: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Mono', Menlo, Consolas, monospace;
+
+  /* --- shape & depth --- */
+  --radius-card: 1rem;
+  --radius-panel: 1.25rem;
+  --radius-pill: 999px;
+  --shadow-soft: 0 1px 3px rgba(35, 42, 27, 0.04), 0 10px 30px -12px rgba(35, 42, 27, 0.1);
+  --shadow-lift: 0 2px 6px rgba(35, 42, 27, 0.05), 0 18px 40px -14px rgba(35, 42, 27, 0.16);
+
+  /* --- layout --- */
+  --content-max: 76rem;
+  --section-pad-y: clamp(4.5rem, 9vw, 7rem);
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+
+  /* --- motion --- */
+  --ease-out-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --reveal-duration: 0.7s;
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.68;
+  color: var(--text-body);
+  background-color: var(--bg-page);
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-body);
+  font-weight: 650;
+  line-height: 1.12;
+  color: var(--text-heading);
+  margin: 0 0 0.55em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5.2vw, 3.75rem);
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+
+h2 {
+  font-size: clamp(1.85rem, 3.2vw, 2.4rem);
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  font-size: 1.06rem;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0 0 1em;
+  max-width: 64ch;
+}
+
+a {
+  color: var(--accent-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--clay-600);
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* visible focus for keyboard users */
+:focus-visible {
+  outline: 3px solid var(--honey-500);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: rgba(217, 166, 63, 0.35);
+  color: var(--ink-900);
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -3.5rem;
+  left: 1rem;
+  z-index: 200;
+  padding: 0.65rem 1.1rem;
+  background: var(--olive-pill);
+  color: var(--text-on-deep);
+  border-radius: var(--radius-pill);
+  transition: top 0.2s var(--ease-out-soft);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   Layout helpers
+   -------------------------------------------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section-pad-y);
+  position: relative;
+}
+
+.section-kicker {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--honey-600);
+  margin: 0 0 0.9rem;
+}
+
+.section-kicker.kicker-clay {
+  color: var(--clay-600);
+}
+
+.section-intro {
+  font-size: 0.97rem;
+  line-height: 1.7;
+  color: var(--ink-500);
+  max-width: 56ch;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.9rem 2rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid transparent;
+  font-weight: 600;
+  font-size: 0.94rem;
+  text-decoration: none;
+  transition:
+    transform 0.25s var(--ease-out-soft),
+    box-shadow 0.25s var(--ease-out-soft),
+    background-color 0.25s var(--ease-out-soft),
+    color 0.25s var(--ease-out-soft);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* dark olive pill — primary action in direction 1c */
+.btn-dark {
+  background: var(--olive-pill);
+  color: var(--cream-50);
+  box-shadow: 0 10px 26px -12px rgba(44, 53, 31, 0.55);
+}
+
+.btn-dark:hover {
+  background: var(--ink-900);
+  color: var(--cream-50);
+  box-shadow: 0 14px 30px -12px rgba(44, 53, 31, 0.65);
+}
+
+/* quiet text link with honey underline — secondary action */
+.link-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  font-size: 0.94rem;
+  color: var(--ink-900);
+  text-decoration: none;
+  border-bottom: 2px solid var(--honey-500);
+  padding-bottom: 3px;
+  transition:
+    color 0.2s var(--ease-out-soft),
+    border-color 0.2s var(--ease-out-soft);
+}
+
+.link-accent:hover {
+  color: var(--honey-600);
+  border-color: var(--clay-500);
+}
+
+/* --------------------------------------------------------------------------
+   Cards
+   -------------------------------------------------------------------------- */
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+  padding: 1.8rem 1.85rem;
+  box-shadow: none;
+  transition:
+    transform 0.35s var(--ease-out-soft),
+    box-shadow 0.35s var(--ease-out-soft),
+    border-color 0.35s var(--ease-out-soft);
+}
+
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+    border-color: var(--hairline-deep);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Scroll reveal (progressive enhancement — content visible by default,
+   .js-motion on <html> gates the hidden initial state so no-JS/SEO is safe)
+   -------------------------------------------------------------------------- */
+
+.js-motion [data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity var(--reveal-duration) var(--ease-out-soft),
+    transform var(--reveal-duration) var(--ease-out-soft);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.js-motion [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion — site remains complete and elegant without animation
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .js-motion [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}

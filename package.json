@@ -1,0 +1,19 @@
+{
+  "name": "beecoolabs-website",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "BeeCooLabs — privacy-first product lab building focused domain super apps for everyday life.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "@fontsource-variable/inter": "^5.1.0",
+    "astro": "^5.18.2"
+  }
+}

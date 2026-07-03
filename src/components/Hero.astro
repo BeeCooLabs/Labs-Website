@@ -1,0 +1,217 @@
+---
+/**
+ * Hero — direction 1c "Premium Privacy-First": centered and quiet.
+ * Pill badge, single H1, supporting copy, dark pill + accent link,
+ * large faint hexagon shapes drifting behind, and a module-word
+ * rhythm strip between hairlines. All copy is real DOM text.
+ */
+const moduleWords = [
+  'routines',
+  'meals',
+  'calendars',
+  'events',
+  'decisions',
+  'notes',
+  'bookings',
+  'progress',
+  'rewards',
+  'communities',
+];
+---
+
+<section class="hero" id="top">
+  <!-- faint geometric backdrop -->
+  <div class="hero-backdrop" aria-hidden="true">
+    <div class="bg-hex hex-honey" data-parallax="0.1"></div>
+    <div class="bg-hex hex-olive" data-parallax="0.18"></div>
+  </div>
+
+  <div class="container hero-inner">
+    <p class="hero-badge" data-reveal>
+      <span class="badge-dot" aria-hidden="true"></span>
+      A privacy-first product lab
+    </p>
+
+    <h1 data-reveal style="--reveal-delay:0.08s">
+      Privacy-first super apps for everyday&nbsp;life.
+    </h1>
+
+    <p class="hero-lede" data-reveal style="--reveal-delay:0.16s">
+      BeeCooLabs builds focused digital tools that bring together everything people need for one
+      area of life — from school routines to event planning — without collecting more personal
+      data than necessary.
+    </p>
+
+    <div class="hero-actions" data-reveal style="--reveal-delay:0.24s">
+      <a class="btn btn-dark" href="#ideas">Explore the ideas</a>
+      <a class="link-accent" href="#share">Share an idea <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+
+  <!-- module word rhythm -->
+  <div class="word-strip" data-reveal style="--reveal-delay:0.34s">
+    <p class="word-strip-inner" aria-label="Everyday-life areas BeeCooLabs tools bring together">
+      {
+        moduleWords.map((word, i) => (
+          <>
+            {i > 0 && <span class="word-sep" aria-hidden="true">·</span>}
+            <span class="word">{word}</span>
+          </>
+        ))
+      }
+    </p>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding-top: clamp(5rem, 11vw, 8rem);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-backdrop {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .bg-hex {
+    position: absolute;
+    clip-path: polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0% 50%);
+    will-change: transform;
+  }
+
+  .hex-honey {
+    right: 4%;
+    top: 3.5rem;
+    width: 12rem;
+    height: 10.5rem;
+    background: rgba(217, 166, 63, 0.09);
+    animation: hex-drift 14s ease-in-out infinite;
+  }
+
+  .hex-olive {
+    left: 3%;
+    bottom: 5rem;
+    width: 9.5rem;
+    height: 8.3rem;
+    background: rgba(60, 74, 47, 0.06);
+    animation: hex-drift 17s ease-in-out -6s infinite reverse;
+  }
+
+  @keyframes hex-drift {
+    0%,
+    100% {
+      translate: 0 0;
+    }
+    50% {
+      translate: 10px -14px;
+    }
+  }
+
+  .hero-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    border: 1px solid var(--field-border);
+    border-radius: var(--radius-pill);
+    padding: 0.5rem 1.15rem;
+    font-size: 0.79rem;
+    font-weight: 550;
+    color: var(--ink-500);
+    margin: 0;
+  }
+
+  .badge-dot {
+    width: 0.44rem;
+    height: 0.44rem;
+    border-radius: 50%;
+    background: var(--honey-500);
+  }
+
+  .hero h1 {
+    margin-top: 2.1rem;
+    margin-bottom: 0;
+    max-width: 52.5rem;
+  }
+
+  .hero-lede {
+    margin: 1.6rem auto 0;
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    line-height: 1.7;
+    color: var(--ink-600);
+    max-width: 40rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2.4rem;
+  }
+
+  /* --- module word rhythm strip --- */
+
+  .word-strip {
+    position: relative;
+    margin-top: clamp(4rem, 8vw, 5.5rem);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .word-strip-inner {
+    max-width: var(--content-max);
+    margin-inline: auto;
+    padding: 1.25rem var(--gutter);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 0.85rem;
+    row-gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-400);
+  }
+
+  .word-sep {
+    color: var(--honey-500);
+  }
+
+  @media (max-width: 640px) {
+    .word-strip-inner {
+      column-gap: 0.6rem;
+      font-size: 0.66rem;
+    }
+
+    .hex-honey {
+      width: 8rem;
+      height: 7rem;
+      right: -6%;
+    }
+
+    .hex-olive {
+      width: 6.5rem;
+      height: 5.7rem;
+      left: -8%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bg-hex {
+      animation: none;
+    }
+  }
+</style>

@@ -1,0 +1,59 @@
+---
+/**
+ * BeeLogo — the BeeCooLabs hexagon-cell bee mark.
+ * Geometric bee assembled from honeycomb cells (head, wings, thorax, abdomen),
+ * matching the brand mark. Colours are configurable per surface.
+ */
+interface Props {
+  size?: number;
+  /** colourway: 'light' for cream surfaces, 'dark' for deep olive surfaces */
+  variant?: 'light' | 'dark';
+  class?: string;
+}
+
+const { size = 26, variant = 'light', class: className } = Astro.props;
+
+const colors =
+  variant === 'dark'
+    ? {
+        head: '#f4eddf',
+        wingL: '#d9a63f',
+        wingR: '#f4eddf',
+        thorax: '#f4eddf',
+        abdomen: '#d9a63f',
+      }
+    : {
+        head: '#26301c',
+        wingL: '#d9a63f',
+        wingR: '#e4d5ae',
+        thorax: '#3c4a2f',
+        abdomen: '#5c7040',
+      };
+
+const height = Math.round((size * 112) / 96);
+---
+
+<svg
+  class={className}
+  width={size}
+  height={height}
+  viewBox="0 0 96 112"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+>
+  <!-- antennae -->
+  <path d="M43 15 37 7M53 15l6-8" stroke={colors.head} stroke-width="2.6" stroke-linecap="round"
+  ></path>
+  <circle cx="36" cy="6" r="3.2" fill={colors.head}></circle>
+  <circle cx="60" cy="6" r="3.2" fill={colors.head}></circle>
+  <!-- head -->
+  <path d="M48 12l10.4 6v12L48 36l-10.4-6V18L48 12Z" fill={colors.head}></path>
+  <!-- wings -->
+  <path d="M22 38l12.1 7v14L22 66 9.9 59V45L22 38Z" fill={colors.wingL}></path>
+  <path d="M74 38l12.1 7v14L74 66l-12.1-7V45L74 38Z" fill={colors.wingR}></path>
+  <!-- thorax -->
+  <path d="M48 38l17.3 10v20L48 78 30.7 68V48L48 38Z" fill={colors.thorax}></path>
+  <!-- abdomen -->
+  <path d="M48 80l13.9 8v16l-13.9 8-13.9-8V88l13.9-8Z" fill={colors.abdomen}></path>
+</svg>

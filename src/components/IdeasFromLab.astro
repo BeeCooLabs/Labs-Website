@@ -1,0 +1,161 @@
+---
+/**
+ * Ideas from the lab — direction 1c: calm grid.
+ * Split header (kicker + H2 left, intro copy right), then six quiet white
+ * cards with a small geometric marker beside each title.
+ */
+import { ideaDirections } from '../data/ideas';
+---
+
+<section class="section ideas" id="ideas">
+  <div class="container">
+    <div class="ideas-head">
+      <div data-reveal>
+        <p class="section-kicker">From the lab</p>
+        <h2>Ideas from the lab</h2>
+      </div>
+      <div data-reveal style="--reveal-delay:0.1s">
+        <p class="section-intro">
+          BeeCooLabs is exploring focused product ideas around everyday life domains — the
+          places where people currently jump between chats, notes, calendars, spreadsheets and
+          disconnected apps.
+        </p>
+        <p class="ideas-sub">
+          Rather than building one giant app for everything, we are shaping smaller domain super
+          apps: focused tools that bring related tasks together in a simple, privacy-conscious
+          way.
+        </p>
+      </div>
+    </div>
+
+    <ul class="idea-grid" role="list">
+      {
+        ideaDirections.map((idea, i) => (
+          <li class="card idea-card" data-reveal style={`--reveal-delay:${(i % 3) * 0.1}s`}>
+            <div class="idea-title">
+              <span
+                class={`marker marker-${idea.marker.shape} marker-${idea.marker.color}`}
+                aria-hidden="true"
+              />
+              <h3>{idea.title}</h3>
+            </div>
+            <p>{idea.description}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .ideas-head {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(1.5rem, 4vw, 3.75rem);
+    align-items: end;
+  }
+
+  .ideas-head h2 {
+    margin-bottom: 0;
+  }
+
+  .section-intro {
+    margin-bottom: 0.75em;
+  }
+
+  .ideas-sub {
+    margin: 0;
+    font-size: 0.91rem;
+    line-height: 1.7;
+    color: var(--ink-400);
+  }
+
+  .idea-grid {
+    list-style: none;
+    margin: 3.5rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .idea-title {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .idea-title h3 {
+    margin: 0;
+  }
+
+  .idea-card p {
+    margin: 0.75rem 0 0;
+    font-size: 0.88rem;
+    line-height: 1.62;
+    color: var(--ink-500);
+  }
+
+  /* --- small geometric markers --- */
+
+  .marker {
+    flex: none;
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+
+  .marker-hex {
+    width: 0.85rem;
+    height: 0.78rem;
+    clip-path: polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0% 50%);
+  }
+
+  .marker-dot {
+    border-radius: 50%;
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  .marker-square {
+    border-radius: 3px;
+    width: 0.7rem;
+    height: 0.7rem;
+  }
+
+  .marker-diamond {
+    border-radius: 2px;
+    width: 0.65rem;
+    height: 0.65rem;
+    transform: rotate(45deg);
+  }
+
+  .marker-honey {
+    background: var(--honey-500);
+  }
+
+  .marker-clay {
+    background: var(--clay-500);
+  }
+
+  .marker-green {
+    background: var(--green-500);
+  }
+
+  @media (max-width: 900px) {
+    .ideas-head {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .idea-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 620px) {
+    .idea-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+</style>

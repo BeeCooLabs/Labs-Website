@@ -1,0 +1,132 @@
+---
+/**
+ * Why BeeCooLabs exists — direction 1c: editorial.
+ * Warm sand band, centered vision statement, then the five principles
+ * as quiet numbered table rows with hairline separators.
+ */
+import { principles } from '../data/principles';
+---
+
+<section class="section why" id="why">
+  <div class="container">
+    <div class="why-vision" data-reveal>
+      <p class="section-kicker kicker-clay">The vision</p>
+      <h2>Why BeeCooLabs exists</h2>
+      <p class="vision-statement">
+        BeeCooLabs started from a simple belief: everyday digital tools should make life easier
+        without making people give away more personal data than necessary.
+      </p>
+      <p class="vision-body">
+        Many families, groups and small businesses manage their lives across scattered apps,
+        chats, notes and spreadsheets. BeeCooLabs is built around the idea of focused domain
+        super apps — simple products that bring related tasks together in one place. The vision
+        is to build practical, privacy-conscious apps that feel human, useful and shaped by the
+        people who use them.
+      </p>
+    </div>
+
+    <ol class="principles" role="list">
+      {
+        principles.map((principle, i) => (
+          <li class="principle" data-reveal style={`--reveal-delay:${i * 0.08}s`}>
+            <span class="principle-num" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <h3>{principle.title}</h3>
+            <p>{principle.description}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .why {
+    background: var(--bg-band);
+  }
+
+  .why-vision {
+    max-width: 51rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .vision-statement {
+    margin: 1.9rem auto 0;
+    font-size: clamp(1.25rem, 2.2vw, 1.38rem);
+    line-height: 1.55;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--ink-800);
+    text-wrap: balance;
+    max-width: 46rem;
+  }
+
+  .vision-body {
+    margin: 1.25rem auto 0;
+    font-size: 0.94rem;
+    line-height: 1.75;
+    color: var(--ink-500);
+    max-width: 42.5rem;
+  }
+
+  /* --- numbered principle rows --- */
+
+  .principles {
+    list-style: none;
+    max-width: 57.5rem;
+    margin: 4rem auto 0;
+    padding: 0;
+    border-top: 1px solid var(--hairline-deep);
+  }
+
+  .principle {
+    display: grid;
+    grid-template-columns: 4rem 13.75rem 1fr;
+    gap: 1.5rem;
+    align-items: baseline;
+    padding: 1.4rem 0.5rem;
+    border-bottom: 1px solid var(--hairline-deep);
+  }
+
+  .principle-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--honey-600);
+  }
+
+  .principle h3 {
+    margin: 0;
+    font-size: 0.97rem;
+  }
+
+  .principle p {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--ink-500);
+  }
+
+  @media (max-width: 720px) {
+    .principle {
+      grid-template-columns: 2.6rem 1fr;
+      grid-template-areas:
+        'num title'
+        'num body';
+      row-gap: 0.3rem;
+    }
+
+    .principle-num {
+      grid-area: num;
+    }
+
+    .principle h3 {
+      grid-area: title;
+    }
+
+    .principle p {
+      grid-area: body;
+    }
+  }
+</style>

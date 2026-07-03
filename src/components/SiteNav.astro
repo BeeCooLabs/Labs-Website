@@ -1,0 +1,102 @@
+---
+/**
+ * SiteNav — quiet light header (direction 1c): bee mark + wordmark,
+ * muted olive links, dark olive pill CTA. Sticky with a hairline border.
+ */
+import BeeLogo from './BeeLogo.astro';
+---
+
+<header class="site-nav" data-nav>
+  <div class="container nav-inner">
+    <a class="wordmark" href="#top" aria-label="BeeCooLabs — back to top">
+      <BeeLogo size={24} variant="light" />
+      <span>BeeCooLabs</span>
+    </a>
+
+    <nav aria-label="Main navigation">
+      <ul class="nav-links">
+        <li><a href="#ideas">Ideas</a></li>
+        <li><a href="#why">Why BeeCooLabs exists</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+        <li><a class="nav-cta" href="#share">Share an idea</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250, 246, 236, 0.88);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--hairline);
+    padding-block: 0.95rem;
+    transition: box-shadow 0.35s var(--ease-out-soft);
+  }
+
+  .site-nav.is-scrolled {
+    box-shadow: 0 10px 30px -18px rgba(35, 42, 27, 0.25);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.04rem;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+    color: var(--ink-900);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2.6vw, 2.1rem);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    color: var(--ink-600);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: color 0.2s var(--ease-out-soft);
+  }
+
+  .nav-links a:hover {
+    color: var(--ink-900);
+  }
+
+  .nav-cta {
+    background: var(--olive-pill);
+    color: var(--cream-50) !important;
+    font-weight: 600 !important;
+    padding: 0.6rem 1.35rem;
+    border-radius: var(--radius-pill);
+    transition: background-color 0.2s var(--ease-out-soft) !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--ink-900);
+  }
+
+  @media (max-width: 720px) {
+    /* keep it minimal on small screens: wordmark + share CTA */
+    .nav-links li:not(:last-child) {
+      display: none;
+    }
+  }
+</style>
